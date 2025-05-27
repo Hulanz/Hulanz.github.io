@@ -1,3 +1,6 @@
-theme: jekyll-theme-minimal
+# theme: jekyll-theme-minimal
 title: Hulanz
 description: My name is Zachary Hulan and I'm a recent computer science graduate from the University of Québec in Montréal (UQAM). I decided to pursue a career in computer science to link my passion for video games with my natural knack for problem solving. It was a bit of a shot in the dark for me, but immediatly after my first semester, I knew that I'd just found my new home. This page will help showcase some of the technical skills I acquired throughout my journey as a Software developer.
+remote_theme: pages-themes/midnight@v0.2.0
+plugins:
+- jekyll-remote-theme
