@@ -16,3 +16,8 @@ nav {
     justify-content: space-around;
     border-bottom: 2px solid rgba(0, 0, 0, 0.6);
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+}
