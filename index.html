@@ -1,44 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Zachary Hulan</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
-  </head>
-  <body>
-      <div class="top-banner">
-        <h1>Hulanz</h1>
-        <hl></hl>
-      </div>
-      <nav>
-        <a href="/">About me</a>
-        <a href="/">My projects</a>
-        <a href="/">Socials</a>
-        <a href="/">GitHub</a>
-      </nav>
-      <div class="content">
-        <div>
-          <h2>About me</h2>
-          <p>My name is Zachary Hulan and I'm a recent computer science graduate from the University of Québec in Montréal (UQAM). I decided to pursue a career in computer science to link my passion for video games with my natural knack for problem solving. It was a bit of a shot in the dark for me, but immediatly after my first semester, I knew that I'd just found my new home. This page will help showcase some of the technical skills I acquired throughout my journey as a Software developer.</p>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Name – Portfolio</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Alpine.js (for small interactions like mobile menu) -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- Navbar -->
+    <nav class="flex justify-between items-center px-6 py-4 max-w-5xl mx-auto">
+        <h1 class="text-xl font-semibold">Your Name</h1>
+
+        <div x-data="{ open:false }" class="relative">
+            <button @click="open = !open" class="md:hidden">Menu</button>
+
+            <ul class="hidden md:flex gap-6">
+                <li><a href="#about" class="hover:text-blue-600">About</a></li>
+                <li><a href="#projects" class="hover:text-blue-600">Projects</a></li>
+                <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
+            </ul>
+
+            <ul x-show="open" @click.outside="open=false"
+                class="absolute right-0 mt-2 bg-white shadow rounded p-4 flex flex-col gap-4 md:hidden">
+                <li><a href="#about" class="hover:text-blue-600">About</a></li>
+                <li><a href="#projects" class="hover:text-blue-600">Projects</a></li>
+                <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
+            </ul>
         </div>
-        <h2>My projects</h2>
-        <hl></hl>
-        <div>
-          <h3>Huly's Adventure</h3>
-          <h3>Pixelate</h3>
-          <h3>SylvCiT</h3>
-          <h3>Graphics programming</h3>
-        <div>
-          <h4>The earth lagrange system</h3>
-          <h4>Toon shader</h3>
+    </nav>
+
+    <!-- Hero -->
+    <section class="max-w-5xl mx-auto px-6 py-20">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+            <div>
+                <h2 class="text-4xl font-bold mb-4">Software Developer</h2>
+                <p class="text-lg text-gray-700 mb-6">
+                    I build APIs, backend systems, and clean software solutions.  
+                    Currently seeking full-time opportunities as a Software Engineer.
+                </p>
+                <a href="#projects"
+                   class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                   View my projects
+                </a>
+            </div>
+
+            <img src="assets/images/hero.png" alt="Profile"
+                 class="rounded-lg shadow">
         </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="max-w-5xl mx-auto px-6 py-16">
+        <h3 class="text-3xl font-semibold mb-4">About Me</h3>
+        <p class="text-gray-700 leading-relaxed">
+            I'm a software developer specializing in Python, backend engineering, and REST APIs.
+            I enjoy building maintainable systems with clean architectures and modern tooling.
+        </p>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="max-w-5xl mx-auto px-6 py-16">
+        <h3 class="text-3xl font-semibold mb-8">Projects</h3>
+
+        <div class="grid md:grid-cols-2 gap-10">
+            <!-- Project Card -->
+            <div class="bg-white shadow rounded-lg p-6">
+                <h4 class="text-xl font-semibold mb-2">Project Name</h4>
+                <p class="text-gray-700 mb-4">Short description of the project.</p>
+                <a href="#" class="text-blue-600 hover:underline">View Details</a>
+            </div>
+
+            <div class="bg-white shadow rounded-lg p-6">
+                <h4 class="text-xl font-semibold mb-2">Another Project</h4>
+                <p class="text-gray-700 mb-4">Short description of the project.</p>
+                <a href="#" class="text-blue-600 hover:underline">View Details</a>
+            </div>
         </div>
-        <hl></hl>
-        <h2>Socials</h2>
-      </div>
-    <script src="index.js"></script>
-  </body>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="max-w-5xl mx-auto px-6 py-16">
+        <h3 class="text-3xl font-semibold mb-4">Contact</h3>
+        <p class="text-gray-700 mb-6">
+            Interested in working together? Reach me here:
+        </p>
+
+        <a href="mailto:your.email@example.com"
+           class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+           Email Me
+        </a>
+    </section>
+
+    <footer class="text-center py-6 text-gray-500">
+        © 2025 Your Name
+    </footer>
+
+</body>
 </html>
