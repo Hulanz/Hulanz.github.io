@@ -8,36 +8,51 @@
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Alpine.js (for small interactions like mobile menu) -->
+    <!-- Alpine.js -->
     <script
       defer
       src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
   </head>
 
-  <body class="bg-gray-50 text-gray-900">
+  <body class="bg-gray-50 text-gray-900" x-data="{ language: 'en' }">
     <!-- Navbar -->
     <nav class="flex justify-between items-center px-6 py-4 max-w-5xl mx-auto">
       <h1 class="text-xl font-semibold">My Portfolio</h1>
 
-      <div x-data="{ open:false }" class="relative">
-        <button @click="open = !open" class="md:hidden">Menu</button>
-
+      <div class="flex items-center gap-6">
         <ul class="hidden md:flex gap-6">
-          <li><a href="#about" class="hover:text-blue-600">About</a></li>
-          <li><a href="#projects" class="hover:text-blue-600">Projects</a></li>
-          <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
+          <li><a href="#about" class="hover:text-blue-600"><span x-show="language==='en'">About</span><span x-show="language==='fr'">À propos</span></a></li>
+          <li><a href="#projects" class="hover:text-blue-600"><span x-show="language==='en'">Projects</span><span x-show="language==='fr'">Projets</span></a></li>
+          <li><a href="#contact" class="hover:text-blue-600"><span x-show="language==='en'">Contact</span><span x-show="language==='fr'">Contact</span></a></li>
         </ul>
 
-        <ul
-          x-show="open"
-          @click.outside="open=false"
-          class="absolute right-0 mt-2 bg-white shadow rounded p-4 flex flex-col gap-4 md:hidden"
-        >
-          <li><a href="#about" class="hover:text-blue-600">About</a></li>
-          <li><a href="#projects" class="hover:text-blue-600">Projects</a></li>
-          <li><a href="#contact" class="hover:text-blue-600">Contact</a></li>
-        </ul>
+        <!-- Language Switcher -->
+        <div class="flex gap-2 items-center">
+          <button
+            @click="language = 'en'"
+            :class="language === 'en' ? 'font-bold text-blue-600' : 'text-gray-600'"
+          >EN</button>
+          <span>|</span>
+          <button
+            @click="language = 'fr'"
+            :class="language === 'fr' ? 'font-bold text-blue-600' : 'text-gray-600'"
+          >FR</button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-data="{ open:false }" class="relative md:hidden">
+          <button @click="open = !open">Menu</button>
+          <ul
+            x-show="open"
+            @click.outside="open=false"
+            class="absolute right-0 mt-2 bg-white shadow rounded p-4 flex flex-col gap-4"
+          >
+            <li><a href="#about" class="hover:text-blue-600"><span x-show="language==='en'">About</span><span x-show="language==='fr'">À propos</span></a></li>
+            <li><a href="#projects" class="hover:text-blue-600"><span x-show="language==='en'">Projects</span><span x-show="language==='fr'">Projets</span></a></li>
+            <li><a href="#contact" class="hover:text-blue-600"><span x-show="language==='en'">Contact</span><span x-show="language==='fr'">Contact</span></a></li>
+          </ul>
+        </div>
       </div>
     </nav>
 
@@ -48,17 +63,24 @@
       <div class="flex flex-col md:flex-row justify-between items-center">
         <div class="flex-1 pr-0 md:pr-6 mb-6 md:mb-0">
           <h2 class="text-4xl font-bold mb-2">Zachary Hulan</h2>
-          <h3 class="text-2xl font-semibold mb-4 text-gray-700">Junior Software Developer</h3>
+          <h3 class="text-2xl font-semibold mb-4 text-gray-700">
+            <span x-show="language==='en'">Junior Software Developer</span>
+            <span x-show="language==='fr'">Développeur Logiciel Junior</span>
+          </h3>
           <p class="text-lg text-gray-700 mb-6">
-            Currently seeking full-time opportunities as a Software Engineer.  
-            I’m passionate about problem-solving, coding challenges, and discovering the world software developement on my own. 
-            I still have plenty of room to grow and I hope to get the chance to prove myself.
+            <span x-show="language==='en'">
+              Currently seeking full-time opportunities as a Software Engineer. I’m passionate about problem-solving, coding challenges, and discovering the world of software development on my own. I still have plenty of room to grow and hope to get the chance to prove myself.
+            </span>
+            <span x-show="language==='fr'">
+              Actuellement à la recherche d'opportunités à temps plein en tant que développeur logiciel. Je suis passionné par la résolution de problèmes, les défis de programmation et la découverte du monde du développement logiciel par moi-même. J'ai encore beaucoup à apprendre et j'espère avoir l'occasion de faire mes preuves.
+            </span>
           </p>
           <a
             href="#projects"
             class="px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700"
           >
-            View my projects
+            <span x-show="language==='en'">View my projects</span>
+            <span x-show="language==='fr'">Voir mes projets</span>
           </a>
         </div>
 
@@ -72,11 +94,19 @@
 
     <!-- About -->
     <section id="about" class="max-w-5xl mx-auto px-6 py-8">
-      <h3 class="text-3xl font-semibold mb-4">About Me</h3>
+      <h3 class="text-3xl font-semibold mb-4">
+        <span x-show="language==='en'">About Me</span>
+        <span x-show="language==='fr'">À propos de moi</span>
+      </h3>
       <p class="text-gray-700 leading-relaxed">
-        Recent graduate Computer Science and Software Engineering from UQAM, I’m someone who’s passionate about solving complex problems through code. I approach every challenge with discipline and curiosity.
-        In my free time, I’m a runner and a video game enthusiast. These hobbies fuel my perseverance, strategic thinking, and constant desire to learn. Having recently completed my first marathon, I bring that same tenacity to solving problems in software development.
-        I’m currently looking for opportunities where I can contribute to meaningful projects, collaborate with motivated teams, and continue to grow as a software engineer.
+        <span x-show="language==='en'">
+          Recent Computer Science and Software Engineering graduate from UQAM, I’m passionate about solving complex problems through code. I approach every challenge with discipline and curiosity. In my free time, I’m a runner and a video game enthusiast. Completing my first marathon has strengthened my perseverance, strategic thinking, and drive to learn. I’m looking for opportunities to contribute to meaningful projects and grow as a software engineer.
+        </span>
+        <span x-show="language==='fr'">
+          Récemment diplômé en informatique et génie logiciel de l’UQAM, je suis quelqu'un de passionné par la résolution de problèmes complexes au travers du code. J’aborde chaque défi avec rigueur et curiosité. 
+          Dans mes temps libre, je suis un coureur et un amateur de jeux vidéo. Ces activités alimentent ma persévérance, mon esprit stratégique et mon désir constant d’apprendre. Ayant récemment complété mon tout premier marathon, je transpose cette ténacité directement lorsqu'un je résous des problèmes en informatique.
+          Je suis à la recherche d’opportunités où je peux contribuer à des projets concrets, collaborer avec des équipes motivées et continuer à me développer comme ingénieur logiciel.
+        </span>
       </p>
     </section>
 
@@ -84,66 +114,94 @@
 
     <!-- Projects -->
     <section id="projects" class="max-w-5xl mx-auto px-6 py-8">
-      <h3 class="text-3xl font-semibold mb-6">Projects</h3>
+      <h3 class="text-3xl font-semibold mb-6">
+        <span x-show="language==='en'">Projects</span>
+        <span x-show="language==='fr'">Projets</span>
+      </h3>
 
-      <!-- Horizontal scrolling container -->
       <div class="flex gap-6 overflow-x-auto scroll-smooth scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 pb-2">
-        <!-- Project Card 1 -->
+
+        <!-- Chess engine -->
         <div class="flex-none bg-white shadow rounded-lg p-6 w-80">
           <div class="flex items-center gap-2 mb-2">
             <img src="assets/Go.svg" alt="Go" class="w-6 h-6" />
             <h4 class="text-xl font-semibold">Chess engine</h4>
           </div>
-
           <p class="text-gray-700 mb-4">
-            A fully interactive chess engine written in Go using Raylib for
-            rendering. This was my first serious experience with Go and is also
-            my biggest personal project yet. I'm currently working on
-            implementing a solid AI to play against.
+            <span x-show="language==='en'">
+              A fully interactive chess engine written in Go using Raylib for rendering. My first serious Go project and my largest personal project so far. Currently working on implementing a solid AI to play against.
+            </span>
+            <span x-show="language==='fr'">
+              Un jeu d'échec interactif écrit avec Go et Raylib pour le rendu graphique. Ceci est mon premier projet sérieux avec Go. J'implémente actuellement une IA solide pour eventuellement l'inscrire contre d'autre joueur artificiel sur le site web Lichess.
+            </span>
           </p>
-          <a href="#" class="text-blue-600 hover:underline">View Details</a>
+          <a href="#" class="text-blue-600 hover:underline">
+            <span x-show="language==='en'">View Details</span>
+            <span x-show="language==='fr'">Voir les détails</span>
+          </a>
         </div>
 
-        <!-- Project Card 2 -->
+        <!-- Pixelate -->
         <div class="flex-none bg-white shadow rounded-lg p-6 w-80">
           <div class="flex items-center gap-2 mb-2">
-              <img src="assets/C++.svg" alt="C++" class="w-6 h-6" />
-              <h4 class="text-xl font-semibold">Pixelate</h4>
+            <img src="assets/C++.svg" alt="C++" class="w-6 h-6" />
+            <h4 class="text-xl font-semibold">Pixelate</h4>
           </div>
           <p class="text-gray-700 mb-4">
-             Pixelate is a simple C++ program I built to create pixel art using Raylib. 
-             The project was designed as a hands-on way to deepen my understanding of C++ and practice working with graphics and basic rendering concepts.
-             It also gave me way to implement different algorithms I've learned in some of my classes.
+            <span x-show="language==='en'">
+              Pixelate is a simple C++ program to create pixel art using Raylib. It was a hands-on way to deepen my C++ skills and practice graphics rendering and algorithms.
+            </span>
+            <span x-show="language==='fr'">
+              Pixelate est un programme C++ simple pour créer du pixel art avec Raylib. Je me suis lancé dans ce projet question d'approfondir mes compétences en C++ et de mettre en pratique les algorithmes que nous avons appris pendant mes cours universitaires.
+            </span>
           </p>
-          <a href="#" class="text-blue-600 hover:underline">View Details</a>
+          <a href="#" class="text-blue-600 hover:underline">
+            <span x-show="language==='en'">View Details</span>
+            <span x-show="language==='fr'">Voir les détails</span>
+          </a>
         </div>
 
-        <!-- Project Card 3 -->
+        <!-- SylvCiT - Mobile -->
         <div class="flex-none bg-white shadow rounded-lg p-6 w-80">
           <div class="flex items-center gap-2 mb-2">
-              <img src="assets/React.svg" alt="React" class="w-6 h-6" />
-              <img src="assets/Python.svg" alt="Python" class="w-6 h-6" />
-              <h4 class="text-xl font-semibold">SylvCiT - Mobile</h4>
+            <img src="assets/React.svg" alt="React" class="w-6 h-6" />
+            <img src="assets/Python.svg" alt="Python" class="w-6 h-6" />
+            <h4 class="text-xl font-semibold">SylvCiT - Mobile</h4>
           </div>
           <p class="text-gray-700 mb-4">
-              A mobile application built with React Native, Flask, and MySQL.  
-              The goal of the project was to enable data collection in the field.
+            <span x-show="language==='en'">
+              A mobile app built with React Native, Flask, and MySQL to enable field data collection while supporting the original SylvCiT mission. 
+            </span>
+            <span x-show="language==='fr'">
+              Une application mobile construite avec React Native, Flask et MySQL pour permettre de cartographier les arbres du territoire de l'Île de Montréal. Cette application fut développer pendant une session complète et est le résultat d'un projet pilote.
+            </span>
           </p>
-          <a href="#" class="text-blue-600 hover:underline">View Details</a>
+          <a href="#" class="text-blue-600 hover:underline">
+            <span x-show="language==='en'">View Details</span>
+            <span x-show="language==='fr'">Voir les détails</span>
+          </a>
         </div>
 
-        <!-- Project Card 4 -->
+        <!-- Huly's Adventure -->
         <div class="flex-none bg-white shadow rounded-lg p-6 w-80">
           <div class="flex items-center gap-2 mb-2">
-              <img src="assets/Godot.svg" alt="Godot" class="w-6 h-6" />
-              <h4 class="text-xl font-semibold">Huly's Adventure</h4>
+            <img src="assets/Godot.svg" alt="Godot" class="w-6 h-6" />
+            <h4 class="text-xl font-semibold">Huly's Adventure</h4>
           </div>
           <p class="text-gray-700 mb-4">
+            <span x-show="language==='en'">
             My first platformer game, built using the Godot engine.  
             This project helped me learn game mechanics, level design, and scripting in Godot while creating a fun, playable experience from scratch.
             I took on this project after watching Brackeys first Godot tutorial.
+            </span>
+            <span x-show="language==='fr'">
+              Mon premier jeu de plateforme construit avec l'engin graphique Godot. J'ai appris la mécanique du jeu, la conception de niveaux et le scripting tout en créant une expérience jouable depuis zéro.
+            </span>
           </p>
-          <a href="#" class="text-blue-600 hover:underline">View Details</a>
+          <a href="#" class="text-blue-600 hover:underline">
+            <span x-show="language==='en'">View Details</span>
+            <span x-show="language==='fr'">Voir les détails</span>
+          </a>
         </div>
       </div>
     </section>
@@ -152,10 +210,12 @@
 
     <!-- Socials -->
     <section id="socials" class="max-w-5xl mx-auto px-6 py-8">
-      <h3 class="text-3xl font-semibold mb-4">Socials</h3>
+      <h3 class="text-3xl font-semibold mb-4">
+        <span x-show="language==='en'">Socials</span>
+        <span x-show="language==='fr'">Réseaux</span>
+      </h3>
 
       <div class="flex flex-col md:flex-row md:items-center gap-4 text-lg">
-        <!-- GitHub -->
         <a
           href="https://github.com/hulanz"
           class="flex items-center gap-2 text-blue-600 hover:underline"
@@ -166,7 +226,6 @@
           GitHub
         </a>
 
-        <!-- LinkedIn -->
         <a
           href="https://www.linkedin.com/in/zachary-hulan-319a5b289"
           class="flex items-center gap-2 text-blue-600 hover:underline"
@@ -177,13 +236,15 @@
           LinkedIn
         </a>
 
-        <!-- Email -->
         <a
           href="mailto:zack_hulan3@hotmail.com"
           class="flex items-center gap-2 text-blue-600 hover:underline"
         >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5" > <path d="M12 13.5 1.5 6h21L12 13.5zm0 2L1.5 8.25V18h21V8.25L12 15.5z" /> </svg>
-          Email
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+            <path d="M12 13.5 1.5 6h21L12 13.5zm0 2L1.5 8.25V18h21V8.25L12 15.5z" />
+          </svg>
+          <span x-show="language==='en'">Email</span>
+          <span x-show="language==='fr'">Courriel</span>
         </a>
       </div>
     </section>
